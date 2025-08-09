@@ -20,13 +20,15 @@ jobs:
 
    - name: Install dependencies
      run: |
-      pip install requests pandas
+      pip install requests pandas openpyxl
 
    - name: Run script
      run: python cnyes.py
 
    - name: Save csv
      run: |
+      git config --global user.name "Jennifer"
+      git config --global user.email "jenniferschooluse@gmail.com"
       git add news.csv
       git commit -m "update investment news"
       git push origin main
