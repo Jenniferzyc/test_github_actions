@@ -1,0 +1,9 @@
+name: Deploy App 
+on: 
+  workflow_dispatch: 
+
+jobs: 
+  call-build: 
+    uses: Jenniferzyc/test_github_actions/.github/workflows/build.yml@main 
+    with: 
+      version: "3.10"
