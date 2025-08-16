@@ -5,6 +5,8 @@ on:
  - cron: "* * * * *" # 每天 UTC 00:00 執行(台灣時間 +8 小時)
  workflow_dispatch: # 允許手動觸發
 
+permissions:
+ contents: write
 
 jobs:
  update-sheet:
@@ -29,6 +31,10 @@ jobs:
      run: |
       git config --global user.name "Jennifer"
       git config --global user.email "jenniferschooluse@gmail.com"
-      git add news.csv
+      if git diff --cached --quiet; then
+       echo "No changes to commit"
+       exit 0
+      fi
+      git add -A
       git commit -m "update investment news"
-      git push origin main
+      git push
